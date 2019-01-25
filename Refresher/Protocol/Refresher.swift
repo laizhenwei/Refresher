@@ -28,7 +28,4 @@ public protocol Refresher {
 
 extension Refresher {
     public var triggerDistance: CGFloat { return 0 }
-    
-    public func update(state: RefreshState) {}
-    public func update(progress: CGFloat) {}
 }

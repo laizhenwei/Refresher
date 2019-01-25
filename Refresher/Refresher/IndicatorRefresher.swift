@@ -26,6 +26,10 @@ public final class IndicatorRefresher: Refresher {
         return indicatorView
     }
     
+    public func update(state: RefreshState) {
+        // ...
+    }
+    
     public func update(progress: CGFloat) {
         indicatorView.alpha = abs(progress)
     }
