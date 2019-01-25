@@ -1,5 +1,5 @@
 //
-//  IndicatorViewController.swift
+//  RefresherViewController.swift
 //  Examples
 //
 //  Created by laizw on 2019/1/25.

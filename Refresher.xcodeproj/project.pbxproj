@@ -13,7 +13,7 @@
 		2921CEA121FAF4D700E2C51A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2921CE9F21FAF4D700E2C51A /* LaunchScreen.storyboard */; };
 		2921CEA621FAF4E400E2C51A /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921CE8821FAE93D00E2C51A /* EntryViewController.swift */; };
 		2921CEA721FAF4E400E2C51A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921CE7621FAE70500E2C51A /* ViewController.swift */; };
-		2921CEA821FAF4E400E2C51A /* IndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921CE8621FAE88100E2C51A /* IndicatorViewController.swift */; };
+		2921CEA821FAF4E400E2C51A /* RefresherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921CE8621FAE88100E2C51A /* RefresherViewController.swift */; };
 		2921CEAC21FAF54600E2C51A /* Refresher.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29E83BF421FAC5AE009427AF /* Refresher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		29E83C0821FAC5BC009427AF /* FooterRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0021FAC5BC009427AF /* FooterRefresher.swift */; };
 		29E83C0921FAC5BC009427AF /* HeaderRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0121FAC5BC009427AF /* HeaderRefresher.swift */; };
@@ -49,7 +49,7 @@
 
 /* Begin PBXFileReference section */
 		2921CE7621FAE70500E2C51A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		2921CE8621FAE88100E2C51A /* IndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorViewController.swift; sourceTree = "<group>"; };
+		2921CE8621FAE88100E2C51A /* RefresherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefresherViewController.swift; sourceTree = "<group>"; };
 		2921CE8821FAE93D00E2C51A /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		2921CE9421FAF4D600E2C51A /* Examples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Examples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2921CE9621FAF4D600E2C51A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +57,8 @@
 		2921CE9D21FAF4D700E2C51A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2921CEA021FAF4D700E2C51A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2921CEA221FAF4D700E2C51A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2921CEAD21FAFD4400E2C51A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		2921CEAE21FAFD4B00E2C51A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		29E83BF421FAC5AE009427AF /* Refresher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Refresher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29E83BF821FAC5AE009427AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		29E83C0021FAC5BC009427AF /* FooterRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterRefresher.swift; sourceTree = "<group>"; };
@@ -98,7 +100,7 @@
 			children = (
 				2921CE8821FAE93D00E2C51A /* EntryViewController.swift */,
 				2921CE7621FAE70500E2C51A /* ViewController.swift */,
-				2921CE8621FAE88100E2C51A /* IndicatorViewController.swift */,
+				2921CE8621FAE88100E2C51A /* RefresherViewController.swift */,
 				2921CE9621FAF4D600E2C51A /* AppDelegate.swift */,
 				2921CE9A21FAF4D600E2C51A /* Main.storyboard */,
 				2921CE9D21FAF4D700E2C51A /* Assets.xcassets */,
@@ -108,11 +110,21 @@
 			path = Examples;
 			sourceTree = "<group>";
 		};
+		2921CEAF21FAFD4F00E2C51A /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2921CEAE21FAFD4B00E2C51A /* LICENSE */,
+				2921CEAD21FAFD4400E2C51A /* README.md */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		29E83BEA21FAC5AE009427AF = {
 			isa = PBXGroup;
 			children = (
 				2921CE9521FAF4D600E2C51A /* Examples */,
 				29E83BF621FAC5AE009427AF /* Refresher */,
+				2921CEAF21FAFD4F00E2C51A /* Supporting Files */,
 				29E83BF521FAC5AE009427AF /* Products */,
 				2921CE8C21FAF46900E2C51A /* Frameworks */,
 			);
@@ -281,7 +293,7 @@
 				2921CE9721FAF4D600E2C51A /* AppDelegate.swift in Sources */,
 				2921CEA721FAF4E400E2C51A /* ViewController.swift in Sources */,
 				2921CEA621FAF4E400E2C51A /* EntryViewController.swift in Sources */,
-				2921CEA821FAF4E400E2C51A /* IndicatorViewController.swift in Sources */,
+				2921CEA821FAF4E400E2C51A /* RefresherViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
