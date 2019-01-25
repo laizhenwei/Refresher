@@ -7,9 +7,14 @@
 
 import UIKit
 
+public enum RefreshState {
+    case idle, pulling, willRefresh, refreshing, noMoreData
+}
+
 public protocol Refresher {
     var view: UIView { get }
-    var holderHeight: CGFloat { get }
+    
+    var refreshHeight: CGFloat { get }
     var triggerDistance: CGFloat { get }
     
     var refreshAction: (() -> ())? { set get }
@@ -22,8 +27,8 @@ public protocol Refresher {
 }
 
 extension Refresher {
-    var triggerDistance: CGFloat { return 0 }
+    public var triggerDistance: CGFloat { return 0 }
     
-    func update(state: RefreshState) {}
-    func update(progress: CGFloat) {}
+    public func update(state: RefreshState) {}
+    public func update(progress: CGFloat) {}
 }

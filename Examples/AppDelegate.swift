@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  Refresher
+//  Examples
 //
-//  Created by laizw on 2019/1/23.
-//  Copyright © 2019 buzzvideo. All rights reserved.
+//  Created by laizw on 2019/1/25.
+//  Copyright © 2019 laizw. All rights reserved.
 //
 
 import UIKit

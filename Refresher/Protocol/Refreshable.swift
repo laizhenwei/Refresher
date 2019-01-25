@@ -7,10 +7,6 @@
 
 import UIKit
 
-public enum RefreshState {
-    case idle, pulling, willRefresh, refreshing, noMoreData
-}
-
 public protocol Refreshable: class {
     
     var scrollView: UIScrollView? { set get }
@@ -29,14 +25,14 @@ public protocol Refreshable: class {
     func stopAnimating(completion:  @escaping () -> ())
 }
 
-extension Refreshable where Self: UIView {
+extension Refreshable {
     public var isRefreshing: Bool {
         return state == .refreshing || state == .willRefresh
     }
 }
 
 extension Refreshable where Self: UIView {
-    func refresherWillMoveToSuperView(_ view: UIView?) {
+    public func refresherWillMoveToSuperView(_ view: UIView?) {
         removeObserver()
         if let view = view as? UIScrollView {
             scrollViewInset = view.contentInset
@@ -46,7 +42,7 @@ extension Refreshable where Self: UIView {
         }
     }
 
-    func refresherDidMoveToSuperView() {
+    public func refresherDidMoveToSuperView() {
         scrollView = superview as? UIScrollView
         if refresher.view.superview == nil {
             addSubview(refresher.view)
@@ -57,7 +53,7 @@ extension Refreshable where Self: UIView {
         }
     }
     
-    func beginRefreshing() {
+    public func beginRefreshing() {
         guard !isRefreshing else { return }
         if window != nil {
             state = .refreshing
@@ -78,7 +74,7 @@ extension Refreshable where Self: UIView {
         }
     }
     
-    func endRrefreshing(noMoreData: Bool = false) {
+    public func endRrefreshing(noMoreData: Bool = false) {
         stopAnimating(completion: { [weak self] in
             if noMoreData {
                 self?.state = .noMoreData

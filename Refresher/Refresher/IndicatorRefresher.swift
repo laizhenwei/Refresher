@@ -8,28 +8,28 @@
 
 import UIKit
 
-final class IndicatorRefresher: Refresher {
+public final class IndicatorRefresher: Refresher {
     
-    var holderHeight: CGFloat = 50
+    public var refreshHeight: CGFloat = 50
     
-    var refreshAction: (() -> ())?
+    public var refreshAction: (() -> ())?
     
-    let indicatorView: UIActivityIndicatorView
+    public let indicatorView: UIActivityIndicatorView
     
-    init(style: UIActivityIndicatorView.Style, action: (() -> ())?) {
+    public init(style: UIActivityIndicatorView.Style, action: (() -> ())?) {
         self.indicatorView = UIActivityIndicatorView(style: style)
         self.refreshAction = action
     }
     
-    var view: UIView {
+    public var view: UIView {
         return indicatorView
     }
     
-    func startAnimating() {
+    public func startAnimating() {
         indicatorView.startAnimating()
     }
     
-    func stopAnimating() {
+    public func stopAnimating() {
         indicatorView.stopAnimating()
     }
 }

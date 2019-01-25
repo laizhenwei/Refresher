@@ -23,7 +23,7 @@ final class FooterRefresher: UIView, Refreshable {
         }
     }
     
-    var refresher: Refresher
+    let refresher: Refresher
     
     init(refresher: Refresher) {
         self.refresher = refresher
