@@ -18,11 +18,16 @@ public final class IndicatorRefresher: Refresher {
     
     public init(style: UIActivityIndicatorView.Style, action: (() -> ())?) {
         self.indicatorView = UIActivityIndicatorView(style: style)
+        self.indicatorView.hidesWhenStopped = false
         self.refreshAction = action
     }
     
     public var view: UIView {
         return indicatorView
+    }
+    
+    public func update(progress: CGFloat) {
+        indicatorView.alpha = abs(progress)
     }
     
     public func startAnimating() {

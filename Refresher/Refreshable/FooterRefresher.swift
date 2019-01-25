@@ -67,9 +67,12 @@ extension FooterRefresher {
             triggerDistance = triggerDistance + scrollView.bounds.height - scrollView.contentSize.height
         }
         // 滑动距离超出阈值
-        if triggerDistance >= bounds.height + refresher.triggerDistance {
+        let distance = bounds.height + refresher.triggerDistance
+        if triggerDistance >= distance {
             beginRefreshing()
         }
+        
+        refresher.update(progress: min(1, max(0, triggerDistance / distance)))
     }
     
     func scrollView(_ scrollView: UIScrollView, didChangeContentSize: NSKeyValueObservedChange<CGSize>) {
