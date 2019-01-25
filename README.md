@@ -31,3 +31,52 @@ tableView.refresh.isHeaderRefreshing
 tableView.refresh.isFooterRefreshing
 ```
 
+## Refresher
+
+实现 `Refresher` 协议
+
+```
+public protocol Refresher {
+    var view: UIView { get }
+
+    var refreshHeight: CGFloat { get }
+    var triggerDistance: CGFloat { get }
+
+    var refreshAction: (() -> ())? { set get }
+
+    func update(state: RefreshState)
+    func update(progress: CGFloat)
+
+    func startAnimating()
+    func stopAnimating()
+}
+```
+
+eg. 简单的 `IndicatorRefresher` 实现
+```
+public final class IndicatorRefresher: Refresher {
+
+    public var refreshHeight: CGFloat = 50
+
+    public var refreshAction: (() -> ())?
+
+    public let indicatorView: UIActivityIndicatorView
+
+    public init(style: UIActivityIndicatorView.Style, action: (() -> ())?) {
+        self.indicatorView = UIActivityIndicatorView(style: style)
+        self.refreshAction = action
+    }
+
+    public var view: UIView {
+        return indicatorView
+    }
+
+    public func startAnimating() {
+        indicatorView.startAnimating()
+    }
+
+    public func stopAnimating() {
+        indicatorView.stopAnimating()
+    }
+}
+```
