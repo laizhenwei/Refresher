@@ -1,5 +1,5 @@
 //
-//  Refreshable.swift
+//  Refresher.swift
 //  Refresher
 //
 //  Created by laizw on 2019/1/22.
@@ -7,7 +7,13 @@
 
 import UIKit
 
-public protocol Refreshable: class {
+public typealias Refresher = UIView & Refreshable
+
+public enum RefreshState {
+    case idle, pulling, willRefresh, refreshing, noMoreData
+}
+
+public protocol Refreshable: AnyObject {
     
     var scrollView: UIScrollView? { set get }
     
@@ -15,13 +21,12 @@ public protocol Refreshable: class {
     
     var state: RefreshState { set get }
     
-    var refresher: Refresher { get }
+    var animator: RefreshAnimatable { get }
     
     func scrollView(_ scrollView: UIScrollView, didChangeOffset: NSKeyValueObservedChange<CGPoint>)
     func scrollView(_ scrollView: UIScrollView, didChangeContentSize: NSKeyValueObservedChange<CGSize>)
     
     func startAnimating(completion: @escaping () -> ())
-    
     func stopAnimating(completion:  @escaping () -> ())
 }
 
@@ -44,10 +49,10 @@ extension Refreshable where Self: UIView {
 
     public func refresherDidMoveToSuperView() {
         scrollView = superview as? UIScrollView
-        if refresher.view.superview == nil {
-            addSubview(refresher.view)
-            refresher.view.frame = bounds
-            refresher.view.autoresizingMask = [
+        if animator.view.superview == nil {
+            addSubview(animator.view)
+            animator.view.frame = bounds
+            animator.view.autoresizingMask = [
                 .flexibleTopMargin, .flexibleBottomMargin, .flexibleWidth, .flexibleHeight
             ]
         }
@@ -58,7 +63,7 @@ extension Refreshable where Self: UIView {
         if window != nil {
             state = .refreshing
             startAnimating(completion: { [weak self] in
-                self?.refresher.refreshAction?()
+                self?.animator.refreshAction?()
             })
         } else {
             state = .willRefresh
@@ -67,7 +72,7 @@ extension Refreshable where Self: UIView {
                 if self?.state == .willRefresh {
                     self?.state = .refreshing
                     self?.startAnimating(completion: {
-                        self?.refresher.refreshAction?()
+                        self?.animator.refreshAction?()
                     })
                 }
             }
@@ -86,7 +91,7 @@ extension Refreshable where Self: UIView {
 }
 
 private var ObserversKey = 0
-extension Refreshable where Self: UIView {
+extension Refreshable {
     private var observers: [NSKeyValueObservation] {
         set {
             objc_setAssociatedObject(self, &ObserversKey, newValue, .OBJC_ASSOCIATION_RETAIN)

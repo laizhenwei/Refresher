@@ -13,11 +13,11 @@ class IndicatorViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.refresh.addHeader(IndicatorRefresher(style: .gray, action: {
+        tableView.refresh.addHeader(IndicatorRefreshAnimator(style: .gray, action: {
             self.refreshData()
         }))
         
-        tableView.refresh.addFooter(IndicatorRefresher(style: .gray, action: {
+        tableView.refresh.addFooter(IndicatorRefreshAnimator(style: .gray, action: {
             self.fetchMoreData()
         }))
     }
@@ -27,11 +27,11 @@ class NormalViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.refresh.addHeader(NormalRefresher(action: {
+        tableView.refresh.addHeader(NormalRefreshAnimator(action: {
             self.refreshData()
         }))
         
-        tableView.refresh.addFooter(NormalRefresher(action: {
+        tableView.refresh.addFooter(NormalRefreshAnimator(action: {
             self.fetchMoreData()
         }))
     }

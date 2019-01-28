@@ -1,5 +1,5 @@
 //
-//  IndicatorRefresher.swift
+//  IndicatorRefreshAnimator.swift
 //  Refresher
 //
 //  Created by laizw on 2019/1/24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class IndicatorRefresher: Refresher {
+public final class IndicatorRefreshAnimator: RefreshAnimatable {
     
     public var refreshHeight: CGFloat = 50
     

@@ -1,5 +1,5 @@
 //
-//  FooterRefresher.swift
+//  AutoFooterRefresher.swift
 //  Refresher
 //
 //  Created by laizw on 2019/1/24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FooterRefresher: UIView, Refreshable {
+final class AutoFooterRefresher: Refresher {
     
     var scrollView: UIScrollView?
     
@@ -19,16 +19,16 @@ final class FooterRefresher: UIView, Refreshable {
             guard oldValue != state else { return }
             updateContentInset()
             updateFooterTop()
-            refresher.update(state: state)
+            animator.update(state: state)
         }
     }
     
-    let refresher: Refresher
+    let animator: RefreshAnimatable
     
-    init(refresher: Refresher) {
-        self.refresher = refresher
+    init(animator: RefreshAnimatable) {
+        self.animator = animator
         super.init(frame: .zero)
-        refresher.update(state: .idle)
+        animator.update(state: .idle)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +51,7 @@ final class FooterRefresher: UIView, Refreshable {
     }
 }
 
-extension FooterRefresher {
+extension AutoFooterRefresher {
     func scrollView(_ scrollView: UIScrollView, didChangeOffset: NSKeyValueObservedChange<CGPoint>) {
         guard !isHidden, state != .refreshing, state != .willRefresh, state != .noMoreData else { return }
         
@@ -67,12 +67,12 @@ extension FooterRefresher {
             triggerDistance = triggerDistance + scrollView.bounds.height - scrollView.contentSize.height
         }
         // 滑动距离超出阈值
-        let distance = bounds.height + refresher.triggerDistance
+        let distance = bounds.height + animator.triggerDistance
         if triggerDistance >= distance {
             beginRefreshing()
         }
         
-        refresher.update(progress: min(1, max(0, triggerDistance / distance)))
+        animator.update(progress: min(1, max(0, triggerDistance / distance)))
     }
     
     func scrollView(_ scrollView: UIScrollView, didChangeContentSize: NSKeyValueObservedChange<CGSize>) {
@@ -81,13 +81,13 @@ extension FooterRefresher {
     
     func startAnimating(completion: @escaping () -> ()) {
         guard scrollView != nil else { return }
-        refresher.startAnimating()
+        animator.startAnimating()
         completion()
     }
     
     func stopAnimating(completion: @escaping () -> ()) {
         guard let view = scrollView else { return }
-        refresher.stopAnimating()
+        animator.stopAnimating()
         completion()
         
         if view.isDecelerating {
@@ -105,7 +105,7 @@ extension FooterRefresher {
     }
 }
 
-extension FooterRefresher {
+extension AutoFooterRefresher {
     private func updateContentInset() {
         if isHidden {
             scrollView?.contentInset.bottom = scrollViewInset.bottom

@@ -1,5 +1,5 @@
 //
-//  Refresher.swift
+//  RefreshAnimatable.swift
 //  Refresher
 //
 //  Created by laizw on 2019/1/23.
@@ -7,11 +7,7 @@
 
 import UIKit
 
-public enum RefreshState {
-    case idle, pulling, willRefresh, refreshing, noMoreData
-}
-
-public protocol Refresher {
+public protocol RefreshAnimatable {
     var view: UIView { get }
     
     var refreshHeight: CGFloat { get }
@@ -26,6 +22,8 @@ public protocol Refresher {
     func stopAnimating()
 }
 
-extension Refresher {
-    public var triggerDistance: CGFloat { return 0 }
+extension RefreshAnimatable {
+    public var triggerDistance: CGFloat {
+        return 0
+    }
 }

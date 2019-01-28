@@ -1,5 +1,5 @@
 //
-//  Refresher.swift
+//  BackHeaderRefresher.swift
 //  Refresher
 //
 //  Created by laizw on 2019/1/23.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HeaderRefresher: UIView, Refreshable {
+final class BackHeaderRefresher: Refresher {
     var scrollView: UIScrollView?
     
     var scrollViewInset: UIEdgeInsets = .zero
@@ -16,16 +16,16 @@ final class HeaderRefresher: UIView, Refreshable {
     var state: RefreshState = .idle {
         didSet {
             guard oldValue != state else { return }
-            refresher.update(state: state)
+            animator.update(state: state)
         }
     }
     
-    let refresher: Refresher
+    let animator: RefreshAnimatable
     
-    init(refresher: Refresher) {
-        self.refresher = refresher
+    init(animator: RefreshAnimatable) {
+        self.animator = animator
         super.init(frame: .zero)
-        refresher.update(state: .idle)
+        animator.update(state: .idle)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,7 +43,7 @@ final class HeaderRefresher: UIView, Refreshable {
     }
 }
 
-extension HeaderRefresher {
+extension BackHeaderRefresher {
     func scrollView(_ scrollView: UIScrollView, didChangeOffset: NSKeyValueObservedChange<CGPoint>) {
         guard !isRefreshing else { return }
         
@@ -55,11 +55,11 @@ extension HeaderRefresher {
         guard offset <= 0 else { return }
         
         let triggerDistance = -offset
-        let distance = bounds.height + refresher.triggerDistance
+        let distance = bounds.height + animator.triggerDistance
         let progress = max(0, min(triggerDistance / distance, 1))
         
         if scrollView.isDragging {
-            refresher.update(progress: progress)
+            animator.update(progress: progress)
             if triggerDistance > distance {
                 state = .pulling
             } else {
@@ -68,7 +68,7 @@ extension HeaderRefresher {
         } else if state == .pulling {
             beginRefreshing()
         } else if progress < 1 {
-            refresher.update(progress: progress)
+            animator.update(progress: progress)
         }
     }
     
@@ -78,7 +78,7 @@ extension HeaderRefresher {
     
     func startAnimating(completion: @escaping () -> ()) {
         guard let view = scrollView else { return }
-        refresher.startAnimating()
+        animator.startAnimating()
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
             guard view.panGestureRecognizer.state != .cancelled else { return }
             var insetTop = self.scrollViewInset.top + self.bounds.height
@@ -95,11 +95,11 @@ extension HeaderRefresher {
     
     func stopAnimating(completion: @escaping () -> ()) {
         guard let view = scrollView else { return }
-        refresher.stopAnimating()
+        animator.stopAnimating()
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveLinear, animations: {
             view.contentInset.top = self.scrollViewInset.top
         }, completion: { _ in
-            self.refresher.update(progress: 0)
+            self.animator.update(progress: 0)
             completion()
         })
     }

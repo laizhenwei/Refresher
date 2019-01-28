@@ -8,7 +8,7 @@
 
 import UIKit
 
-public final class NormalRefresher: UIView, Refresher {
+public final class NormalRefreshAnimator: UIView, RefreshAnimatable {
     
     public var refreshHeight: CGFloat = 50
     
@@ -55,7 +55,7 @@ public final class NormalRefresher: UIView, Refresher {
     }
 }
 
-extension NormalRefresher {
+extension NormalRefreshAnimator {
     
     public func update(state: RefreshState) {
         titleLabel.text = titles[state]
