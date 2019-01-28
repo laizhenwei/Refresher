@@ -1,5 +1,5 @@
 //
-//  BackHeaderRefresher.swift
+//  HeaderRefresher.swift
 //  Refresher
 //
 //  Created by laizw on 2019/1/23.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class BackHeaderRefresher: Refresher {
+final class HeaderRefresher: Refresher {
     var scrollView: UIScrollView?
     
     var scrollViewInset: UIEdgeInsets = .zero
@@ -43,9 +43,9 @@ final class BackHeaderRefresher: Refresher {
     }
 }
 
-extension BackHeaderRefresher {
+extension HeaderRefresher {
     func scrollView(_ scrollView: UIScrollView, didChangeOffset: NSKeyValueObservedChange<CGPoint>) {
-        guard !isRefreshing else { return }
+        guard !isRefreshing, !isHidden else { return }
         
         var insetTop = scrollViewInset.top
         if #available(iOS 11.0, *) {

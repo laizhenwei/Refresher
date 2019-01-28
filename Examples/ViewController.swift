@@ -32,7 +32,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.text = "\(indexPath.row)"
+        cell.textLabel?.text = "\(items[indexPath.row])"
         return cell
     }
 }

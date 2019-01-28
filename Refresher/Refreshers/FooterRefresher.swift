@@ -1,5 +1,5 @@
 //
-//  AutoFooterRefresher.swift
+//  FooterRefresher.swift
 //  Refresher
 //
 //  Created by laizw on 2019/1/24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AutoFooterRefresher: Refresher {
+final class FooterRefresher: Refresher {
     
     var scrollView: UIScrollView?
     
@@ -51,9 +51,9 @@ final class AutoFooterRefresher: Refresher {
     }
 }
 
-extension AutoFooterRefresher {
+extension FooterRefresher {
     func scrollView(_ scrollView: UIScrollView, didChangeOffset: NSKeyValueObservedChange<CGPoint>) {
-        guard !isHidden, state != .refreshing, state != .willRefresh, state != .noMoreData else { return }
+        guard !isHidden, !isRefreshing, state != .noMoreData else { return }
         
         // 滑动距离
         var triggerDistance = scrollView.contentOffset.y
@@ -105,7 +105,7 @@ extension AutoFooterRefresher {
     }
 }
 
-extension AutoFooterRefresher {
+extension FooterRefresher {
     private func updateContentInset() {
         if isHidden {
             scrollView?.contentInset.bottom = scrollViewInset.bottom

@@ -9,20 +9,23 @@ import UIKit
 
 public protocol RefresherCompatible {
     var scrollView: UIScrollView { get }
-    
-    var header: Refresher? { set get }
-    
-    var footer: Refresher? { set get }
+    var header: Refresher? { get }
+    var footer: Refresher? { get }
 }
 
 extension RefresherCompatible {
-    
     public func addHeader(_ animator: RefreshAnimatable) {
-        let header = BackHeaderRefresher(animator: animator)
+        let header = HeaderRefresher(animator: animator)
+        header.frame = CGRect(x: 0, y: -animator.refreshHeight, width: scrollView.bounds.width, height: animator.refreshHeight)
+        header.autoresizingMask = [
+            .flexibleLeftMargin, .flexibleRightMargin, .flexibleWidth
+        ]
+        self.header = header
+        scrollView.addSubview(header)
     }
     
     public func addFooter(_ animator: RefreshAnimatable) {
-        let footer = AutoFooterRefresher(animator: animator)
+        let footer = FooterRefresher(animator: animator)
         let top = scrollView.contentSize.height + scrollView.contentInset.bottom
         footer.frame = CGRect(x: 0, y: top, width: scrollView.bounds.width, height: animator.refreshHeight)
         footer.autoresizingMask = [
@@ -34,7 +37,6 @@ extension RefresherCompatible {
 }
 
 extension RefresherCompatible {
-    
     public var isHeaderRefreshing: Bool {
         return header?.isRefreshing ?? false
     }
@@ -55,7 +57,6 @@ extension RefresherCompatible {
 }
 
 extension RefresherCompatible {
-    
     public var isFooterRefreshing: Bool {
         return footer?.isRefreshing ?? false
     }
@@ -85,14 +86,6 @@ private var RefreshFooterKey = 0
 extension RefresherCompatible {
     var header: Refresher? {
         nonmutating set {
-            if let header = newValue {
-                header.frame = CGRect(x: 0, y: -animator.refreshHeight, width: scrollView.bounds.width, height: animator.refreshHeight)
-                header.autoresizingMask = [
-                    .flexibleLeftMargin, .flexibleRightMargin, .flexibleWidth
-                ]
-                self.header = header
-                scrollView.addSubview(header)
-            }
             objc_setAssociatedObject(scrollView, &RefreshHeaderKey, newValue, .OBJC_ASSOCIATION_RETAIN)
         }
         get {

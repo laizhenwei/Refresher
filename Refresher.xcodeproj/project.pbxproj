@@ -15,8 +15,8 @@
 		2921CEA721FAF4E400E2C51A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921CE7621FAE70500E2C51A /* ViewController.swift */; };
 		2921CEA821FAF4E400E2C51A /* RefresherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2921CE8621FAE88100E2C51A /* RefresherViewController.swift */; };
 		2921CEAC21FAF54600E2C51A /* Refresher.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 29E83BF421FAC5AE009427AF /* Refresher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		29E83C0821FAC5BC009427AF /* AutoFooterRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0021FAC5BC009427AF /* AutoFooterRefresher.swift */; };
-		29E83C0921FAC5BC009427AF /* BackHeaderRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0121FAC5BC009427AF /* BackHeaderRefresher.swift */; };
+		29E83C0821FAC5BC009427AF /* FooterRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0021FAC5BC009427AF /* FooterRefresher.swift */; };
+		29E83C0921FAC5BC009427AF /* HeaderRefresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0121FAC5BC009427AF /* HeaderRefresher.swift */; };
 		29E83C0A21FAC5BC009427AF /* Refresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0321FAC5BC009427AF /* Refresher.swift */; };
 		29E83C0B21FAC5BC009427AF /* RefresherCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0421FAC5BC009427AF /* RefresherCompatible.swift */; };
 		29E83C0C21FAC5BC009427AF /* RefreshAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E83C0521FAC5BC009427AF /* RefreshAnimatable.swift */; };
@@ -61,8 +61,8 @@
 		2921CEAE21FAFD4B00E2C51A /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		29E83BF421FAC5AE009427AF /* Refresher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Refresher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		29E83BF821FAC5AE009427AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		29E83C0021FAC5BC009427AF /* AutoFooterRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoFooterRefresher.swift; sourceTree = "<group>"; };
-		29E83C0121FAC5BC009427AF /* BackHeaderRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackHeaderRefresher.swift; sourceTree = "<group>"; };
+		29E83C0021FAC5BC009427AF /* FooterRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterRefresher.swift; sourceTree = "<group>"; };
+		29E83C0121FAC5BC009427AF /* HeaderRefresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderRefresher.swift; sourceTree = "<group>"; };
 		29E83C0321FAC5BC009427AF /* Refresher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresher.swift; sourceTree = "<group>"; };
 		29E83C0421FAC5BC009427AF /* RefresherCompatible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefresherCompatible.swift; sourceTree = "<group>"; };
 		29E83C0521FAC5BC009427AF /* RefreshAnimatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshAnimatable.swift; sourceTree = "<group>"; };
@@ -153,8 +153,8 @@
 		29E83BFF21FAC5BC009427AF /* Refreshers */ = {
 			isa = PBXGroup;
 			children = (
-				29E83C0121FAC5BC009427AF /* BackHeaderRefresher.swift */,
-				29E83C0021FAC5BC009427AF /* AutoFooterRefresher.swift */,
+				29E83C0121FAC5BC009427AF /* HeaderRefresher.swift */,
+				29E83C0021FAC5BC009427AF /* FooterRefresher.swift */,
 			);
 			path = Refreshers;
 			sourceTree = "<group>";
@@ -305,9 +305,9 @@
 				29E83C1121FAD8F4009427AF /* NormalRefreshAnimator.swift in Sources */,
 				29E83C0A21FAC5BC009427AF /* Refresher.swift in Sources */,
 				29E83C0C21FAC5BC009427AF /* RefreshAnimatable.swift in Sources */,
-				29E83C0821FAC5BC009427AF /* AutoFooterRefresher.swift in Sources */,
+				29E83C0821FAC5BC009427AF /* FooterRefresher.swift in Sources */,
 				29E83C0B21FAC5BC009427AF /* RefresherCompatible.swift in Sources */,
-				29E83C0921FAC5BC009427AF /* BackHeaderRefresher.swift in Sources */,
+				29E83C0921FAC5BC009427AF /* HeaderRefresher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,15 +2,15 @@
 
 ## 使用
 
-**自定义 Refresher**
+**自定义 Refresh Animator**
 
-`Refresher` 只提供刷新功能，和基础 UI 组件，业务需要自定义刷新 UI 组件。
+`Refresher` 支持 Header 和 Footer 刷新组件，可以通过传入 Animator 来构建 Refresher
 
-**添加 Header、Footer，绑定 Action**
+**添加 Header/Footer Animator**
 
 ```
-tableView.refresh.addHeader(NormalRefresher(action: {
-    // excute action
+tableView.refresh.addHeader(NormalRefreshAnimator(action: {
+    // ...
 }))
 ```
 
@@ -31,12 +31,12 @@ tableView.refresh.isHeaderRefreshing
 tableView.refresh.isFooterRefreshing
 ```
 
-## Refresher
+## RefreshAnimatable
 
-实现 `Refresher` 协议
+实现 `RefreshAnimatable` 协议
 
 ```
-public protocol Refresher {
+public protocol RefreshAnimatable {
     var view: UIView { get }
 
     var refreshHeight: CGFloat { get }
@@ -52,31 +52,32 @@ public protocol Refresher {
 }
 ```
 
-eg. 简单的 `IndicatorRefresher` 实现
+eg. 简单的 `IndicatorRefreshAnimator` 实现
 ```
-public final class IndicatorRefresher: Refresher {
+final class IndicatorRefreshAnimator: RefreshAnimatable {
 
-    public var refreshHeight: CGFloat = 50
+    var refreshHeight: CGFloat = 50
 
-    public var refreshAction: (() -> ())?
+    var refreshAction: (() -> ())?
 
-    public let indicatorView: UIActivityIndicatorView
+    let indicatorView: UIActivityIndicatorView
 
-    public init(style: UIActivityIndicatorView.Style, action: (() -> ())?) {
+    init(style: UIActivityIndicatorView.Style, action: (() -> ())?) {
         self.indicatorView = UIActivityIndicatorView(style: style)
         self.refreshAction = action
     }
 
-    public var view: UIView {
+    var view: UIView {
         return indicatorView
     }
 
-    public func startAnimating() {
+    func startAnimating() {
         indicatorView.startAnimating()
     }
 
-    public func stopAnimating() {
+    func stopAnimating() {
         indicatorView.stopAnimating()
     }
 }
 ```
+

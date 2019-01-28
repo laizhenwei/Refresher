@@ -17,7 +17,7 @@ class EntryViewController: UITableViewController {
     
     let styles: [Style] = [
         Style(name: "normal", type: NormalViewController.self),
-        Style(name: "indicator", type: IndicatorViewController.self)
+        Style(name: "indicator", type: IndicatorViewController.self),
     ]
 
     override func viewDidLoad() {
